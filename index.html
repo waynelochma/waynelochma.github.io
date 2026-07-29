@@ -226,9 +226,34 @@
       repeating-linear-gradient(0deg, rgba(18,42,68,0.06) 0 1px, transparent 1px 20px),
       repeating-linear-gradient(90deg, rgba(18,42,68,0.06) 0 1px, transparent 1px 20px),
       var(--paper);
-    display:flex; align-items:center; justify-content:center;
+    display:flex; align-items:center; justify-content:flex-start;
     color:var(--steel); font-family:'IBM Plex Mono', monospace; font-size:0.72rem;
     text-transform:uppercase; letter-spacing:0.06em;
+
+overflow-x: auto; 
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory; /* Snaps the scroll position to the image */
+  scroll-behavior: smooth;
+
+.sheet-diagram img {
+  flex: 0 0 100%; /* Forces every image to be exactly the width of the container */
+  height: 100%;
+  object-fit: cover; /* Use 'contain' instead if you don't want CAD renders cropped */
+  scroll-snap-align: start; /* Ensures the scroll stops cleanly at the edge of each image */
+}
+
+/*Style the scrollbar to match your engineering aesthetic */
+.sheet-diagram::-webkit-scrollbar {
+  height: 6px;
+}
+.sheet-diagram::-webkit-scrollbar-track {
+  background: var(--paper);
+}
+.sheet-diagram::-webkit-scrollbar-thumb {
+  background: var(--steel);
+  border-radius: var(--radius);
+}
+
   }
   .sheet-body{padding:20px 22px 24px;}
   .sheet-body h3{font-size:1.15rem; color:var(--navy); margin-bottom:8px; text-transform:none; letter-spacing:0;}
@@ -384,34 +409,34 @@
 
       <article class="sheet-card">
         <div class="sheet-card-head"><span>Drwg. No. 001</span><span>Rev A</span></div>
-        <div class="sheet-diagram"><img src="Assembly Lead Screw Picture.png" alt="CAD of Assembly Lead Screw">
+        <div class="sheet-diagram"><img src="Assembly Lead Screw Picture.png"><img src="Capture.png">
 </div>
         <div class="sheet-body">
-          <h3>Single-Axis Gimbal Mount</h3>
-          <p>Designed and machined an aluminum camera gimbal with a 3D-printed damping mount, reducing vibration transfer by 40% in bench testing.</p>
-          <div class="tags"><span class="tag">SolidWorks</span><span class="tag">Ansys FEA</span><span class="tag">CNC</span></div>
+          <h3>Brake Actuator Assembly</h3>
+          <p>Reverse-engineered a linear actuator and designed a top housing assembly to route brake lines, delivering a waterjet-cut and machined brake actuator assembly</p>
+          <div class="tags"><span class="tag">SolidWorks</span><span class="tag">Machining</span><span class="tag">Calipers</span></div>
           <a class="sheet-link" href="#">View Writeup →</a>
         </div>
       </article>
 
       <article class="sheet-card">
         <div class="sheet-card-head"><span>Drwg. No. 002</span><span>Rev B</span></div>
-        <div class="sheet-diagram">[ Render / CAD screenshot ]</div>
+        <div class="sheet-diagram"><img src="Capture1.png"><img src="Capture2.png"></div>
         <div class="sheet-body">
-          <h3>Capstone: Modular Robotic Arm</h3>
-          <p>Led mechanical design for a 4-DOF arm, including gear train sizing, bearing selection, and full GD&amp;T drawing package for outsourced machining.</p>
-          <div class="tags"><span class="tag">GD&amp;T</span><span class="tag">Gear Design</span><span class="tag">Team Lead</span></div>
+          <h3>Capstone: Self-Folding Cargo Bike</h3>
+          <p>Spearheaded the mechanical and electrical design of a self-folding cargo bike, defining the folding mechanism concept and driving design decisions from concept through manufacturing </p>
+          <div class="tags"><span class="tag">Mechanical Design</span><span class="tag">Design for Manufacture</span><span class="tag">Electrical Design</span></div>
           <a class="sheet-link" href="#">View Writeup →</a>
         </div>
       </article>
 
       <article class="sheet-card">
         <div class="sheet-card-head"><span>Drwg. No. 003</span><span>Rev A</span></div>
-        <div class="sheet-diagram">[ Render / CAD screenshot ]</div>
+        <div class="sheet-diagram"><img src="Capture3.png"><img src="Capture4.png"></div>
         <div class="sheet-body">
-          <h3>Sheet-Metal Enclosure, Mobile Platform</h3>
-          <p>Internship project: designed a foldable sheet-metal enclosure with press-fit fasteners, cutting assembly time by 25% versus the prior revision.</p>
-          <div class="tags"><span class="tag">Sheet Metal</span><span class="tag">DFM</span><span class="tag">Industry</span></div>
+          <h3>Brake Actuator Finite Element Analysis</h3>
+          <p>Simplified brake actuator assembly for finite element analysis, determining maximum bearing stress and allowable force while balancing accuracy with computation time</p>
+          <div class="tags"><span class="tag">SolidWorks FEA</span><span class="tag">Design Optimization</span><span class="tag">Simulation Analysis</span></div>
           <a class="sheet-link" href="#">View Writeup →</a>
         </div>
       </article>
@@ -506,7 +531,7 @@
           <tr>
             <td class="rev-id">C</td>
             <td class="rev-date">May 2022 – September 2022</td>
-            <td class="rev-role">Sales Associate, Ripley's Aquarium of Canada/td>
+            <td class="rev-role">Sales Associate, Ripley's Aquarium of Canada</td>
             <td>Delivered outstanding customer service by guiding visitors with product recommendations and educational materials, while driving sales and promoting programs to enhance engagement
           </td>
           </tr>
