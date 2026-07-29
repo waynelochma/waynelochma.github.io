@@ -221,7 +221,7 @@
   }
   .sheet-card-head span:last-child{color:var(--safety);}
   .sheet-diagram{
-    height:170px;
+    height:280px;
     background:
       repeating-linear-gradient(0deg, rgba(18,42,68,0.06) 0 1px, transparent 1px 20px),
       repeating-linear-gradient(90deg, rgba(18,42,68,0.06) 0 1px, transparent 1px 20px),
@@ -230,16 +230,21 @@
     color:var(--steel); font-family:'IBM Plex Mono', monospace; font-size:0.72rem;
     text-transform:uppercase; letter-spacing:0.06em;
 
-overflow-x: auto; 
+/* Horizontal scroll configuration */
+  overflow-x: auto; 
   overflow-y: hidden;
-  scroll-snap-type: x mandatory; /* Snaps the scroll position to the image */
+  scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
-
+  }
+  
 .sheet-diagram img {
-  flex: 0 0 100%; /* Forces every image to be exactly the width of the container */
+  flex: 0 0 100%; /* Keeps each slide exactly 100% width of the card */
+  max-width: 100%;
   height: 100%;
-  object-fit: cover; /* Use 'contain' instead if you don't want CAD renders cropped */
-  scroll-snap-align: start; /* Ensures the scroll stops cleanly at the edge of each image */
+  max-height: 100%;
+  object-fit: contain; /* Shrinks/expands the entire image to fit inside without cropping */
+  padding: 12px; /* Adds a bit of breathing room around CAD renders */
+  scroll-snap-align: start;
 }
 
 /*Style the scrollbar to match your engineering aesthetic */
