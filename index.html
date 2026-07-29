@@ -1,5 +1,556 @@
 <!DOCTYPE html>
-<html>
-<head><title>Wayne Loch Ma</title></head>
-<body><h1>Hello, World!</h1></body>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wayne Loch Ma</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#122A44;
+    --blue:#1F4E79;
+    --paper:#EAE6D9;
+    --paper-dim:#DFDAC9;
+    --line:#C9D6E0;
+    --ink:#1B2530;
+    --steel:#5E6F80;
+    --safety:#E1601F;
+    --safety-dim:#B94E19;
+    --radius:2px;
+    --max:1180px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+  }
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    font-size:16px;
+    line-height:1.55;
+  }
+  h1,h2,h3,.stencil{
+    font-family:'Oswald', sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.03em;
+    margin:0;
+  }
+  .mono{font-family:'IBM Plex Mono', monospace;}
+  a{color:inherit;}
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 28px;}
+
+  /* ---------- TITLE BLOCK HEADER ---------- */
+  header.titleblock{
+    position:sticky; top:0; z-index:50;
+    background:var(--navy);
+    border-bottom:3px solid var(--safety);
+    color:var(--line);
+  }
+  .tb-row{
+    display:flex; align-items:center; justify-content:space-between;
+    max-width:var(--max); margin:0 auto; padding:10px 28px;
+    gap:16px;
+  }
+  .tb-name{
+    font-family:'Oswald', sans-serif;
+    font-weight:600;
+    font-size:1.15rem;
+    letter-spacing:0.06em;
+    color:#fff;
+    text-transform:uppercase;
+  }
+  .tb-meta{
+    display:flex; gap:22px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.7rem;
+    color:#9FB3C4;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+  }
+  .tb-meta span b{color:var(--line); font-weight:500;}
+  nav.tb-nav{
+    display:flex; gap:24px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+  }
+  nav.tb-nav a{
+    text-decoration:none; color:#B9C8D6;
+    padding:2px 0; border-bottom:1px solid transparent;
+  }
+  nav.tb-nav a:hover, nav.tb-nav a:focus-visible{
+    color:#fff; border-bottom-color:var(--safety);
+    outline:none;
+  }
+  .navtoggle{display:none; background:none; border:1px solid #38536A; color:#fff; padding:6px 10px; font-family:'IBM Plex Mono',monospace; border-radius:var(--radius);}
+
+  @media (max-width:820px){
+    .tb-meta{display:none;}
+    nav.tb-nav{
+      display:none; position:absolute; top:100%; left:0; right:0;
+      background:var(--navy); flex-direction:column; padding:16px 28px; gap:14px;
+      border-bottom:3px solid var(--safety);
+    }
+    nav.tb-nav.open{display:flex;}
+    .navtoggle{display:inline-block;}
+  }
+
+  /* ---------- DIMENSION DIVIDER ---------- */
+  .dim{
+    display:flex; align-items:center; gap:10px;
+    max-width:var(--max); margin:0 auto; padding:22px 28px 0;
+    color:var(--steel); font-family:'IBM Plex Mono', monospace;
+    font-size:0.7rem; letter-spacing:0.08em; text-transform:uppercase;
+  }
+  .dim::before, .dim::after{
+    content:""; flex:1; height:1px; background:var(--steel); position:relative;
+  }
+  .dim::before{background-image:linear-gradient(90deg, var(--steel) 0 1px, transparent 1px); background-size:8px 1px;}
+  .dim::after{background-image:linear-gradient(90deg, var(--steel) 0 1px, transparent 1px); background-size:8px 1px;}
+
+  section{padding:70px 0;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:
+      linear-gradient(var(--navy), var(--navy)) padding-box,
+      repeating-linear-gradient(0deg, rgba(255,255,255,0.035) 0 1px, transparent 1px 32px),
+      repeating-linear-gradient(90deg, rgba(255,255,255,0.035) 0 1px, transparent 1px 32px);
+    color:#fff;
+    padding:90px 0 80px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero .wrap{position:relative; z-index:2;}
+  .hero-eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--safety);
+    font-size:0.8rem;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    margin-bottom:14px;
+  }
+  .hero h1{
+    font-size:clamp(2.4rem, 6vw, 4.4rem);
+    color:#fff;
+    line-height:0.98;
+  }
+  .hero h1 span{color:var(--safety);}
+  .hero p.lede{
+    max-width:640px;
+    margin-top:22px;
+    color:#C4D2DE;
+    font-size:1.08rem;
+  }
+  .hero-ctas{display:flex; gap:16px; margin-top:34px; flex-wrap:wrap;}
+  .btn{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.8rem; letter-spacing:0.05em; text-transform:uppercase;
+    padding:13px 22px; border-radius:var(--radius);
+    text-decoration:none; display:inline-block;
+    border:1px solid transparent;
+  }
+  .btn-primary{background:var(--safety); color:#fff;}
+  .btn-primary:hover{background:var(--safety-dim);}
+  .btn-ghost{border-color:#3E5A72; color:#E6EEF3;}
+  .btn-ghost:hover{border-color:var(--safety); color:var(--safety);}
+  .btn:focus-visible{outline:2px solid #fff; outline-offset:2px;}
+
+  .hero-specs{
+    margin-top:56px; display:grid; grid-template-columns:repeat(4,1fr);
+    border-top:1px solid #2C4A63; padding-top:20px; gap:20px;
+  }
+  .hero-specs div{font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:#8FA6BA; text-transform:uppercase; letter-spacing:0.06em;}
+  .hero-specs div b{display:block; color:#fff; font-size:1rem; font-family:'IBM Plex Sans', sans-serif; text-transform:none; letter-spacing:0; margin-top:4px;}
+  @media (max-width:700px){.hero-specs{grid-template-columns:repeat(2,1fr);}}
+
+  /* ---------- SECTION HEADS ---------- */
+  .sheet-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.75rem; color:var(--safety);
+    letter-spacing:0.1em; text-transform:uppercase;
+    margin-bottom:10px;
+  }
+  .section-head h2{font-size:clamp(1.6rem, 3vw, 2.3rem); color:var(--navy);}
+  .section-head{margin-bottom:38px;}
+
+  /* ---------- ABOUT / GENERAL NOTES ---------- */
+  .notes-grid{display:grid; grid-template-columns:1fr 1.3fr; gap:56px;}
+  @media (max-width:820px){.notes-grid{grid-template-columns:1fr;}}
+  .notes-list{list-style:none; margin:0; padding:0; counter-reset:note;}
+  .notes-list li{
+    counter-increment:note;
+    display:flex; gap:14px;
+    padding:16px 0; border-bottom:1px solid var(--paper-dim);
+    font-size:0.98rem;
+  }
+  .notes-list li::before{
+    content:counter(note);
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--safety); font-weight:500;
+    min-width:22px;
+  }
+  .about-portrait{
+    background:var(--navy); border-radius:var(--radius);
+    padding:26px; color:#fff; align-self:start;
+  }
+  .about-portrait .mono{color:var(--safety); font-size:0.72rem; letter-spacing:0.08em; text-transform:uppercase; display:block; margin-bottom:10px;}
+  .about-portrait h3{font-size:1.3rem; color:#fff; margin-bottom:14px;}
+  .about-portrait p{color:#C4D2DE; font-size:0.92rem;}
+
+  /* ---------- PROJECTS ---------- */
+  .projects-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:28px;}
+  @media (max-width:820px){.projects-grid{grid-template-columns:1fr;}}
+  .sheet-card{
+    background:#fff; border:1px solid var(--paper-dim); border-radius:var(--radius);
+    overflow:hidden; display:flex; flex-direction:column;
+  }
+  .sheet-card-head{
+    display:flex; justify-content:space-between; align-items:center;
+    background:var(--navy); color:#fff; padding:10px 16px;
+    font-family:'IBM Plex Mono', monospace; font-size:0.68rem;
+    letter-spacing:0.05em; text-transform:uppercase;
+  }
+  .sheet-card-head span:last-child{color:var(--safety);}
+  .sheet-diagram{
+    height:170px;
+    background:
+      repeating-linear-gradient(0deg, rgba(18,42,68,0.06) 0 1px, transparent 1px 20px),
+      repeating-linear-gradient(90deg, rgba(18,42,68,0.06) 0 1px, transparent 1px 20px),
+      var(--paper);
+    display:flex; align-items:center; justify-content:center;
+    color:var(--steel); font-family:'IBM Plex Mono', monospace; font-size:0.72rem;
+    text-transform:uppercase; letter-spacing:0.06em;
+  }
+  .sheet-body{padding:20px 22px 24px;}
+  .sheet-body h3{font-size:1.15rem; color:var(--navy); margin-bottom:8px; text-transform:none; letter-spacing:0;}
+  .sheet-body p{font-size:0.92rem; color:#3A4653; margin:0 0 14px;}
+  .tags{display:flex; flex-wrap:wrap; gap:8px;}
+  .tag{
+    font-family:'IBM Plex Mono', monospace; font-size:0.66rem;
+    text-transform:uppercase; letter-spacing:0.05em;
+    border:1px solid var(--line); color:var(--blue);
+    padding:4px 8px; border-radius:var(--radius);
+  }
+  .sheet-link{
+    display:inline-block; margin-top:16px; font-family:'IBM Plex Mono', monospace;
+    font-size:0.75rem; text-transform:uppercase; color:var(--safety); text-decoration:none;
+    border-bottom:1px solid transparent;
+  }
+  .sheet-link:hover, .sheet-link:focus-visible{border-bottom-color:var(--safety); outline:none;}
+
+  /* ---------- SKILLS / SPEC TABLE ---------- */
+  .spec-table{width:100%; border-collapse:collapse; font-size:0.95rem;}
+  .spec-table th{
+    text-align:left; font-family:'IBM Plex Mono', monospace; font-size:0.68rem;
+    text-transform:uppercase; letter-spacing:0.06em; color:var(--steel);
+    border-bottom:2px solid var(--navy); padding:10px 12px;
+  }
+  .spec-table td{padding:14px 12px; border-bottom:1px solid var(--paper-dim); vertical-align:middle;}
+  .gauge{background:#DCD6C4; border-radius:20px; height:8px; width:160px; overflow:hidden;}
+  .gauge span{display:block; height:100%; background:var(--safety);}
+  @media (max-width:700px){
+    .spec-table thead{display:none;}
+    .spec-table, .spec-table tbody, .spec-table tr, .spec-table td{display:block; width:100%;}
+    .spec-table tr{border-bottom:1px solid var(--paper-dim); padding:14px 0;}
+    .spec-table td{border:none; padding:4px 0;}
+    .gauge{width:100%;}
+  }
+
+  /* ---------- EXPERIENCE / REVISION HISTORY ---------- */
+  .rev-table{width:100%; border-collapse:collapse; font-size:0.9rem;}
+  .rev-table th{
+    text-align:left; font-family:'IBM Plex Mono', monospace; font-size:0.68rem;
+    text-transform:uppercase; letter-spacing:0.06em; color:#9FB3C4;
+    background:var(--navy); padding:12px 14px;
+  }
+  .rev-table td{
+    padding:16px 14px; border-bottom:1px solid var(--paper-dim);
+    background:#fff;
+  }
+  .rev-table td.rev-id{font-family:'IBM Plex Mono', monospace; color:var(--safety); font-weight:500;}
+  .rev-table td.rev-date{font-family:'IBM Plex Mono', monospace; color:var(--steel); white-space:nowrap;}
+  .rev-table td.rev-role{color:var(--navy); font-weight:600;}
+  .rev-table-wrap{overflow-x:auto; border:1px solid var(--paper-dim); border-radius:var(--radius);}
+
+  /* ---------- CONTACT / SIGN-OFF ---------- */
+  .signoff{background:var(--navy); color:#fff;}
+  .signoff .section-head h2{color:#fff;}
+  .signoff-grid{display:grid; grid-template-columns:1.1fr 0.9fr; gap:50px;}
+  @media (max-width:820px){.signoff-grid{grid-template-columns:1fr;}}
+  .signoff p{color:#C4D2DE; max-width:520px;}
+  .contact-fields{list-style:none; margin:24px 0 0; padding:0;}
+  .contact-fields li{
+    display:flex; justify-content:space-between; padding:12px 0;
+    border-bottom:1px solid #2C4A63; font-family:'IBM Plex Mono', monospace; font-size:0.85rem;
+  }
+  .contact-fields li span:first-child{color:#8FA6BA; text-transform:uppercase; letter-spacing:0.05em; font-size:0.7rem;}
+  .contact-fields a{text-decoration:none; color:#fff;}
+  .contact-fields a:hover, .contact-fields a:focus-visible{color:var(--safety); outline:none;}
+  .approval{
+    border:1px solid #2C4A63; border-radius:var(--radius); padding:24px; align-self:start;
+  }
+  .approval .mono{font-size:0.68rem; color:#8FA6BA; text-transform:uppercase; letter-spacing:0.06em;}
+  .sig-line{border-bottom:1px solid #3E5A72; height:44px; margin:10px 0 6px; display:flex; align-items:flex-end;}
+  .sig-line span{font-family:'Oswald',sans-serif; font-size:1.3rem; color:#fff;}
+
+  footer{
+    background:var(--navy); border-top:1px solid #2C4A63; color:#8FA6BA;
+    padding:20px 0; text-align:center; font-family:'IBM Plex Mono', monospace; font-size:0.72rem;
+    letter-spacing:0.04em;
+  }
+</style>
+</head>
+<body>
+
+<header class="titleblock">
+  <div class="tb-row">
+    <div class="tb-name">Wayne Loch Ma</div>
+    <div class="tb-meta">
+      <span>Discipline: <b>Mechanical</b></span>
+      <span>Scale: <b>1:1</b></span>
+      <span>Sheet: <b>1 of 1</b></span>
+    </div>
+    <button class="navtoggle" id="navToggle" aria-expanded="false" aria-controls="siteNav">Menu</button>
+    <nav class="tb-nav" id="siteNav">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-eyebrow mono">Mechanical Engineering Graduate — Design &amp; Prototyping</div>
+    <h1>Wayne<br>design. <span>build. test.</span></h1>
+    <p class="lede">I design mechanical systems from concept sketch to manufactured part — CAD modeling, FEA validation, and hands-on prototyping.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href="#projects">View Projects</a>
+      <a class="btn btn-ghost" href="/resume.pdf">Download Resume</a>
+    </div>
+    <div class="hero-specs">
+      <div>Focus<b>Design for Manufacture</b></div>
+      <div>Tools<b>SolidWorks · 3D-Printing</b></div>
+      <div>Projects<b>6 shipped</b></div>
+      <div>Location<b>Toronto, ON</b></div>
+    </div>
+  </div>
+</section>
+
+<div class="dim">Sheet Index</div>
+
+<section id="about">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="sheet-label">01 / General Notes</div>
+      <h2>About</h2>
+    </div>
+    <div class="notes-grid">
+      <div class="about-portrait">
+        <span class="mono">Drawn By</span>
+        <h3>Wayne Loch Ma</h3>
+        <p>Mechanical Engineering Graudate, University of Toronto. Interested in product and user-centric design — the kind of work where each individual feature matters.</p>
+      </div>
+      <ol class="notes-list">
+        <li>All designs are modeled in SolidWorks and validated with hand calculations before simulation.</li>
+        <li>Prior internship at a robotics startup, designing sheet-metal enclosures and fastener layouts for a mobile platform.</li>
+        <li>Comfortable moving between CAD, FEA, and the machine shop — I test the parts I design.</li>
+        <li>Currently learning GD&amp;T at an advanced level and picking up embedded electronics to design mechatronic systems end-to-end.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<div class="dim">Sheet Index</div>
+
+<section id="projects" style="background:var(--paper-dim);">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="sheet-label">02 / Selected Work</div>
+      <h2>Projects</h2>
+    </div>
+    <div class="projects-grid">
+
+      <article class="sheet-card">
+        <div class="sheet-card-head"><span>Drwg. No. 001</span><span>Rev A</span></div>
+        <div class="sheet-diagram">[ Render / CAD screenshot ]</div>
+        <div class="sheet-body">
+          <h3>Single-Axis Gimbal Mount</h3>
+          <p>Designed and machined an aluminum camera gimbal with a 3D-printed damping mount, reducing vibration transfer by 40% in bench testing.</p>
+          <div class="tags"><span class="tag">SolidWorks</span><span class="tag">Ansys FEA</span><span class="tag">CNC</span></div>
+          <a class="sheet-link" href="#">View Writeup →</a>
+        </div>
+      </article>
+
+      <article class="sheet-card">
+        <div class="sheet-card-head"><span>Drwg. No. 002</span><span>Rev B</span></div>
+        <div class="sheet-diagram">[ Render / CAD screenshot ]</div>
+        <div class="sheet-body">
+          <h3>Capstone: Modular Robotic Arm</h3>
+          <p>Led mechanical design for a 4-DOF arm, including gear train sizing, bearing selection, and full GD&amp;T drawing package for outsourced machining.</p>
+          <div class="tags"><span class="tag">GD&amp;T</span><span class="tag">Gear Design</span><span class="tag">Team Lead</span></div>
+          <a class="sheet-link" href="#">View Writeup →</a>
+        </div>
+      </article>
+
+      <article class="sheet-card">
+        <div class="sheet-card-head"><span>Drwg. No. 003</span><span>Rev A</span></div>
+        <div class="sheet-diagram">[ Render / CAD screenshot ]</div>
+        <div class="sheet-body">
+          <h3>Sheet-Metal Enclosure, Mobile Platform</h3>
+          <p>Internship project: designed a foldable sheet-metal enclosure with press-fit fasteners, cutting assembly time by 25% versus the prior revision.</p>
+          <div class="tags"><span class="tag">Sheet Metal</span><span class="tag">DFM</span><span class="tag">Industry</span></div>
+          <a class="sheet-link" href="#">View Writeup →</a>
+        </div>
+      </article>
+
+      <article class="sheet-card">
+        <div class="sheet-card-head"><span>Drwg. No. 004</span><span>Rev A</span></div>
+        <div class="sheet-diagram">[ Render / CAD screenshot ]</div>
+        <div class="sheet-body">
+          <h3>Quick-Release Bike Rack Mount</h3>
+          <p>Personal project: parametric design in SolidWorks, iterated through three prototypes to reach a tool-free install under 10 seconds.</p>
+          <div class="tags"><span class="tag">Parametric CAD</span><span class="tag">3D Printing</span><span class="tag">Personal</span></div>
+          <a class="sheet-link" href="#">View Writeup →</a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<div class="dim">Sheet Index</div>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="sheet-label">03 / Specification</div>
+      <h2>Skills &amp; Tools</h2>
+    </div>
+    <table class="spec-table">
+      <thead>
+        <tr><th>Category</th><th>Tools</th><th>Proficiency</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="mono">CAD Modeling</td>
+          <td>SolidWorks, Fusion 360</td>
+          <td><div class="gauge"><span style="width:90%"></span></div></td>
+        </tr>
+        <tr>
+          <td class="mono">Simulation</td>
+          <td>Ansys Mechanical, SolidWorks FEA</td>
+          <td><div class="gauge"><span style="width:70%"></span></div></td>
+        </tr>
+        <tr>
+          <td class="mono">Manufacturing</td>
+          <td>CNC Mill/Lathe, Sheet Metal, 3D Printing</td>
+          <td><div class="gauge"><span style="width:80%"></span></div></td>
+        </tr>
+        <tr>
+          <td class="mono">GD&amp;T / Drafting</td>
+          <td>ASME Y14.5 drawing packages</td>
+          <td><div class="gauge"><span style="width:65%"></span></div></td>
+        </tr>
+        <tr>
+          <td class="mono">Programming</td>
+          <td>MATLAB, Python, Arduino/C++</td>
+          <td><div class="gauge"><span style="width:55%"></span></div></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<div class="dim">Sheet Index</div>
+
+<section id="experience" style="background:var(--paper-dim);">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="sheet-label">04 / Revision History</div>
+      <h2>Experience</h2>
+    </div>
+    <div class="rev-table-wrap">
+      <table class="rev-table">
+        <thead>
+          <tr><th>Rev</th><th>Date</th><th>Role</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="rev-id">C</td>
+            <td class="rev-date">May 2026 – Aug 2026</td>
+            <td class="rev-role">Mechanical Design Intern, Northline Robotics</td>
+            <td>Designed sheet-metal enclosures and fastener layouts for a mobile platform; ran DFM reviews with the manufacturing team.</td>
+          </tr>
+          <tr>
+            <td class="rev-id">B</td>
+            <td class="rev-date">Sep 2025 – Present</td>
+            <td class="rev-role">Team Lead, Robotics Capstone Project</td>
+            <td>Leading mechanical design for a 4-DOF robotic arm; coordinating with electrical and software subteams on integration.</td>
+          </tr>
+          <tr>
+            <td class="rev-id">A</td>
+            <td class="rev-date">May 2025 – Aug 2025</td>
+            <td class="rev-role">Machine Shop Assistant, University of Toronto</td>
+            <td>Trained undergraduates on mill, lathe, and CNC safety; maintained shop tooling and fixtures.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="signoff" id="contact">
+  <div class="wrap">
+    <div class="signoff-grid">
+      <div>
+        <div class="section-head">
+          <div class="sheet-label" style="color:var(--safety);">05 / Sign-Off</div>
+          <h2>Let's talk</h2>
+        </div>
+        <p>Open to junior design engineer, R&amp;D, and co-op roles. If you're hiring or just want to talk about a project, reach out — I usually reply within a day.</p>
+        <ul class="contact-fields">
+          <li><span>Email</span><a href="mailto:alex.rivera@email.com">alex.rivera@email.com</a></li>
+          <li><span>LinkedIn</span><a href="#">linkedin.com/in/alexrivera</a></li>
+          <li><span>GitHub</span><a href="#">github.com/alexrivera</a></li>
+          <li><span>Phone</span><a href="tel:+14165550123">(416) 555-0123</a></li>
+        </ul>
+      </div>
+      <div class="approval">
+        <span class="mono">Approved For Release</span>
+        <div class="sig-line"><span>Alex Rivera</span></div>
+        <span class="mono">Date: 2026-07-29</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 Alex Rivera — Built with HTML &amp; CSS, deployed on GitHub Pages
+</footer>
+
+<script>
+  const toggle = document.getElementById('navToggle');
+  const nav = document.getElementById('siteNav');
+  toggle.addEventListener('click', () => {
+    const open = nav.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open);
+  });
+  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    nav.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+  }));
+</script>
+
+</body>
 </html>
